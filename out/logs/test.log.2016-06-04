@@ -1,0 +1,11 @@
+2016-06-04 12:06:27 ExtractDataFromFile:50 [INFO] - after parsing:
+2016-06-04 12:06:27 ExtractDataFromFile:51 [INFO] - xpath
+2016-06-04 12:06:27 ExtractDataFromFile:52 [INFO] - .//a[@id='showlogin']/span
+2016-06-04 12:06:27 ExtractDataFromFile:53 [INFO] - xpath
+2016-06-04 12:06:27 ExtractDataFromFile:54 [INFO] - .//a[@id='showlogin']/span
+2016-06-04 12:06:31 WebElementsActions:49 [INFO] - Click on Link LoginRegistration
+2016-06-04 12:06:31 ExtractDataFromFile:50 [INFO] - after parsing:
+2016-06-04 12:06:31 ExtractDataFromFile:51 [INFO] - cssSelector
+2016-06-04 12:06:31 ExtractDataFromFile:52 [INFO] - a#ctl00_ctl00_conMain_conMain_LoginControl_LoginButton
+2016-06-04 12:06:31 ExtractDataFromFile:53 [INFO] - cssSelector
+2016-06-04 12:06:31 ExtractDataFromFile:54 [INFO] - a#ctl00_ctl00_conMain_conMain_LoginControl_LoginButton

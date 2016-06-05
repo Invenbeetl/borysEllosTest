@@ -1,0 +1,27 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import utils.NoSuchLocatorException;
+import utils.WebElementsActions;
+
+import java.io.IOException;
+
+/**
+ * Created by ViTaLES on 27.05.2016.
+ */
+public class MainPage {
+
+    WebElementsActions web;
+
+    public MainPage(WebDriver driver) {
+        web = new WebElementsActions(driver);
+    }
+
+    public void clickLoginLink() throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException, NoSuchLocatorException {
+        web.clickLink("LoginRegistration");
+    }
+
+    public String  checkCurrentURL() {
+        return web.getCurrentURL();
+    }
+}
