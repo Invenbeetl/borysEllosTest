@@ -3,6 +3,7 @@ package utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,9 +20,23 @@ public class WebElementsActions {
     private static WebDriverWait waitForElement;
     private static final Logger log = Logger.getLogger(WebElementsActions.class);
 
+    //Haha!!!!!
+    //Haha!!!!!
+    private boolean isElementPresent(By by) {
+        try {
+            driver.findElement(by).isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    //Haha!!!!!
+    //Haha!!!!!
+
 
     public WebElementsActions(WebDriver driver) {
         this.driver = driver;
+        waitForElement = new WebDriverWait(driver, 20);
     }
 
 
@@ -78,17 +93,6 @@ public class WebElementsActions {
         }
         return true;
     }
-
-    //Haha!
-    private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by).isDisplayed();
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
 
     /**
      * This method is used to agree messages on pop-up windows
@@ -167,44 +171,18 @@ public class WebElementsActions {
     }
 
 
-
-    /**
-     * This method is used to wait for getting response from all Ajax requests
-     */
-    public boolean waitForAjaxResponse(int timeoutSeconds) throws InterruptedException {
-        //TODO js executor
-        if (driver instanceof JavascriptExecutor) {
-            JavascriptExecutor jsDriver = (JavascriptExecutor) driver;
-
-            for (int i = 0; i < timeoutSeconds; i++) {
-                Long numberOfConnections = (Long) jsDriver.executeScript("return jQuery.active");
-                if (numberOfConnections instanceof Long) {
-                    log.debug("Number of active jQuery Ajax calls is <" + numberOfConnections + ">");
-
-                    if (numberOfConnections == 0)
-                        break;
-                }
-                // stay(1);
-            }
-            return false;
-        } else {
-            log.info("utils.WebElementsActions Driver: <" + driver + "> cann't execute JavaScript");
-            return false;
-        }
-    }
-
     /**
      * This method is used to do Focus to Element And Click
      * Use Actions class
      */
-/*    public void doFocusToElementAndClick(String focusElementLocator, String elementLocator) {
-        new Actions(driver.getOriginalDriver()).moveToElement(getElement(focusElementLocator)).perform();
+    public void doFocusToElementAndClick(String focusElementLocator, String elementLocator) throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+        new Actions(driver).moveToElement(getElement(focusElementLocator)).perform();
         log.info("Focus in to element" + focusElementLocator);
         driver.switchTo();
         if (isElementPresent(elementLocator)) {
             clickButton(elementLocator);
         }
-    }*/
+    }
 
 
     public WebElement getElement(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
@@ -249,5 +227,116 @@ public class WebElementsActions {
     public String getCurrentURL() {
         return driver.getCurrentUrl();
     }
+
+
+    /**
+     * This method is used to wait for getting response from all Ajax requests
+     */
+    public boolean waitForAjaxResponse(int timeoutSeconds) throws InterruptedException {
+        //TODO js executor
+        if (driver instanceof JavascriptExecutor) {
+            JavascriptExecutor jsDriver = (JavascriptExecutor) driver;
+
+            for (int i = 0; i < timeoutSeconds; i++) {
+                Long numberOfConnections = (Long) jsDriver.executeScript("return jQuery.active");
+                if (numberOfConnections instanceof Long) {
+                    log.debug("Number of active jQuery Ajax calls is <" + numberOfConnections + ">");
+
+                    if (numberOfConnections == 0)
+                        break;
+                }
+                // stay(1);
+            }
+            return false;
+        } else {
+            log.info("utils.WebElementsActions Driver: <" + driver + "> cann't execute JavaScript");
+            return false;
+        }
+    }
+
+    /**
+     * Wait the text in the element value specified time
+     */
+    public void waitTextPresent(WebElement elementLocator, String text) {
+        log.info("*Start TO* Wait For Element _" + elementLocator + "_ Present");
+        waitForElement.until(ExpectedConditions.textToBePresentInElement(elementLocator, text));
+    }
+
+    /**
+     * Wait the text in the element (value tag!) specified time
+     */
+    public void waitTextPresentInElementValue(String elementLocator, int timeoutInS, String text) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInS);
+
+        log.info("*Start TO* Wait For Text Present In Element _" + elementLocator + "_ Value");
+
+        wait.until(ExpectedConditions.textToBePresentInElementValue(ExtractDataFromFile.ui(elementLocator), text));
+    }
+
+    /**
+     * An expectation for checking that an element is present on the DOM of a page and visible.
+     * Visibility means that the element is not only displayed but also has a height and width that is greater than 0.
+     * Advantages of this method over isElementPresent(By elementLocator); is that it expects the appearance of an element.
+     */
+    public void waitForElementPresent(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        log.info("*Start TO* Wait For Element _" + elementLocator + "_ Present");
+        waitForElement.until(ExpectedConditions.visibilityOfElementLocated(ExtractDataFromFile.ui(elementLocator)));
+    }
+
+    public void waitForElementDisappear(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        log.info("*Start TO* Wait For Element _" + elementLocator + "_ Present");
+        waitForElement.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(ExtractDataFromFile.ui(elementLocator))));
+    }
+
+    /**
+     * An expectation for checking that an element is present on the DOM of a
+     * page. This does not necessarily mean that the element is visible.
+     *
+     * @param elementLocator used to find the element
+     */
+    public void waitForPresenceOfElementLocated(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        log.info("*Start TO* Wait For Presence Of Element Located _" + elementLocator + "_");
+        waitForElement.until(ExpectedConditions.presenceOfElementLocated(ExtractDataFromFile.ui(elementLocator)));
+    }
+
+    /**
+     * An expectation for checking an element is visible and enabled such that you
+     * can click it.
+     *
+     * @param elementLocator used to find the element
+     */
+    public void waitForElementToBeClickable(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        log.info("*Start TO* Wait For Element _" + elementLocator + "_ To Be Clickable");
+        waitForElement.until(ExpectedConditions.elementToBeClickable(ExtractDataFromFile.ui(elementLocator)));
+    }
+
+    /**
+     * An expectation for checking that an element is becomes invisible, but stay on the DOM.
+     */
+    public void waitForInvisibilityOfElement(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        log.info("*Start TO* Wait For Invisibility Of Element _" + elementLocator + "_ ");
+        waitForElement.until(ExpectedConditions.invisibilityOfElementLocated(ExtractDataFromFile.ui(elementLocator)));
+    }
+
+    /**
+     * Wait for invisibility Of Element on page specified time
+     */
+    public void waitForInvisibilityOfElement(String elementLocator, int timeoutInS) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInS);
+
+        log.info("*Start TO* Wait For Element Not Visible _" + elementLocator + "_");
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(ExtractDataFromFile.ui(elementLocator)));
+    }
+
+    /**
+     * Wait for invisibility Of Element on page
+     */
+    public void waitForElementNotVisible(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        log.info("*Start TO* Wait For Element Not Visible _" + elementLocator + "_");
+        waitForElement.until(ExpectedConditions.invisibilityOfElementLocated(ExtractDataFromFile.ui(elementLocator)));
+    }
+
+
 }
 

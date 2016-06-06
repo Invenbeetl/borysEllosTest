@@ -21,7 +21,4 @@ public class MainPage {
         web.clickLink("LoginRegistration");
     }
 
-    public String  checkCurrentURL() {
-        return web.getCurrentURL();
-    }
 }

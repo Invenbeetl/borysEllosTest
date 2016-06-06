@@ -1,10 +1,7 @@
 package utils;
 
-import org.apache.jasper.tagplugins.jstl.core.Catch;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.internal.Executable;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -39,20 +36,11 @@ public class ExtractDataFromFile {
     /*
      *  Return By class with finding method and target for WebElement from UI mapping file
      */
-
-
     public static By ui(String key) throws IOException, NoSuchLocatorException {
         // Get WebElement's locator from UI mapping file and divide it to finding method and target
         String[] partsOfLocator = getValueFromFile(key, uiMappingFile).split("\"");
         String findMethod = partsOfLocator[0];
         String target = partsOfLocator[1];
-
-        log.info("after parsing:");
-        log.info(partsOfLocator[0]);
-        log.info(partsOfLocator[1]);
-        log.info(findMethod);
-        log.info(target);
-
 
         switch (findMethod) {
             case "xpath":
@@ -66,6 +54,7 @@ public class ExtractDataFromFile {
             default:
                 throw new NoSuchLocatorException("Locator not found");
         }
-
     }
+
+
 }

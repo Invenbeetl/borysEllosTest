@@ -16,7 +16,6 @@ public class SuccessRegistrationPage {
         web = new WebElementsActions(driver);
     }
 
-
     public String checkRegisteredEmail(String email) throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         return email.equals(web.getElementText("RegisteredEmailContainer"))?"Email is Ok": "Email is not Ok";
     }
