@@ -10,10 +10,11 @@ import utils.NoSuchLocatorException;
 /**
  * Created by ViTaLES on 06.06.2016.
  */
-public class RegistrationTests extends Fixture {
+public class RegistrationTests extends Runner {
 
     //Registration functionality tests
     private static final Logger log = Logger.getLogger(RegistrationTests.class);
+    String baseUrl = "http://www.ellos.se/";
 
     @Test
     public void newUserSuccessRegistration() throws Exception, NoSuchLocatorException {
@@ -34,7 +35,7 @@ public class RegistrationTests extends Fixture {
 
     }
 
-    @Test
+    //@Test
     public void emailMaskRegistarion() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -52,7 +53,7 @@ public class RegistrationTests extends Fixture {
         System.out.println(loginPage.checkIncorrectEmailMaskErrorText());
     }
 
-    @Test
+    //@Test
     public void emptyEmailAndPassRegistrationValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -66,7 +67,7 @@ public class RegistrationTests extends Fixture {
         System.out.println(loginPage.checkEmptyEmailPassRegistrationErrorText());
     }
 
-    @Test
+    //@Test
     public void emptyEmailRegistrationValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -82,7 +83,7 @@ public class RegistrationTests extends Fixture {
         System.out.println(loginPage.checkEmptyEmailRegistrationErrorText());
     }
 
-    @Test
+    //@Test
     public void emptyPassRegistrationValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -98,7 +99,7 @@ public class RegistrationTests extends Fixture {
         System.out.println(loginPage.checkEmptyPassRegistrationErrorText());
     }
 
-    @Test
+    //@Test
     public void differentEmailsRegValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -116,7 +117,7 @@ public class RegistrationTests extends Fixture {
         System.out.println(loginPage.checkDifferentEmailsErrorText());
     }
 
-    @Test
+    //@Test
     public void differentPasswordsRegValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -134,7 +135,7 @@ public class RegistrationTests extends Fixture {
         System.out.println(loginPage.checkDifferentPasswordsErrorText());
     }
 
-    @Test
+    //@Test
     public void shortPasswordRegValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -152,7 +153,7 @@ public class RegistrationTests extends Fixture {
         System.out.println(loginPage.checkShortPasswordErrorText());
     }
 
-    @Test
+    //@Test
     public void registeredAccountValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();

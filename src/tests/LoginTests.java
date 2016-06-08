@@ -1,6 +1,8 @@
 package tests;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import pages.ErrorPage;
 import pages.LoginPage;
@@ -8,7 +10,7 @@ import pages.MainPage;
 import utils.NoSuchLocatorException;
 
 
-public class LoginTests extends Fixture {
+public class LoginTests extends Runner {
 
 //    Usual goods order flow
 
@@ -25,6 +27,7 @@ public class LoginTests extends Fixture {
 //    ...
 
     private static final Logger log = Logger.getLogger(LoginTests.class);
+    String baseUrl = "http://www.ellos.se/";
 
 
     @Test
@@ -40,10 +43,11 @@ public class LoginTests extends Fixture {
         loginPage.confirmLoginForm();
         loginPage.logOut();
 
-        System.out.println(web.isElementPresent("LogoutLink"));
+        Assert.assertTrue("", web.isElementPresent("LogoutLink"));
     }
 
     @Test
+    @Ignore
     public void nonExistUserValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -59,6 +63,7 @@ public class LoginTests extends Fixture {
     }
 
     @Test
+    @Ignore
     public void emptyEmailLoginValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -75,6 +80,7 @@ public class LoginTests extends Fixture {
     }
 
     @Test
+    @Ignore
     public void emptyEmaiPasswordValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -92,6 +98,7 @@ public class LoginTests extends Fixture {
     }
 
     @Test
+    @Ignore
     public void emptyEmailAndPasswordValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -109,6 +116,7 @@ public class LoginTests extends Fixture {
 
     //    Check trancate spaces from begin and end of text function in e-mail annd password login input fields
     @Test
+    @Ignore
     public void spacesTrancateSuccessLogin() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -125,6 +133,7 @@ public class LoginTests extends Fixture {
     }
 
     @Test
+    @Ignore
     public void tabsTrancateSuccessLogin() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -141,6 +150,7 @@ public class LoginTests extends Fixture {
     }
 
     @Test
+    @Ignore
     public void excessiveSymbolsInputError() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
