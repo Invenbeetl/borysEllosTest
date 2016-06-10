@@ -1,6 +1,7 @@
 package tests;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 import pages.LoginPage;
 import pages.MainPage;
@@ -30,7 +31,8 @@ public class RegistrationTests extends Runner {
         loginPage.confirmRegistrationForm();
 
         SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage(driver);
-        System.out.println(successRegistrationPage.checkRegisteredEmail(email));
+        Assert.assertTrue("Displayed e-mail is not one, that was inputted during registration or registration is failed",
+                successRegistrationPage.checkRegisteredEmail(email));
         successRegistrationPage.logOut();
 
     }
@@ -50,7 +52,7 @@ public class RegistrationTests extends Runner {
         loginPage.regFill2pass("ellostest");
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkIncorrectEmailMaskErrorText());
+        Assert.assertTrue("Icorrect error about incorrect format of email is displayed", loginPage.checkIncorrectEmailMaskErrorText());
     }
 
     //@Test
@@ -64,7 +66,8 @@ public class RegistrationTests extends Runner {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkEmptyEmailPassRegistrationErrorText());
+        Assert.assertTrue("Error about not filled email and password is incorrect or absent",
+                loginPage.checkEmptyEmailPassRegistrationErrorText());
     }
 
     //@Test
@@ -80,7 +83,7 @@ public class RegistrationTests extends Runner {
         loginPage.regFill2pass("ellostest");
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkEmptyEmailRegistrationErrorText());
+        Assert.assertTrue("Error about not filled email is incorrect or absent", loginPage.checkEmptyEmailRegistrationErrorText());
     }
 
     //@Test
@@ -96,7 +99,7 @@ public class RegistrationTests extends Runner {
         loginPage.regFill2email("ellostest@mailinator.com");
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkEmptyPassRegistrationErrorText());
+        Assert.assertTrue("Error about not filled password is incorrect or absent", loginPage.checkEmptyPassRegistrationErrorText());
     }
 
     //@Test
@@ -114,7 +117,7 @@ public class RegistrationTests extends Runner {
         loginPage.regFill2pass("ellostest");
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkDifferentEmailsErrorText());
+        Assert.assertTrue("Error about different inputted emails is incorrect or absent", loginPage.checkDifferentEmailsErrorText());
     }
 
     //@Test
@@ -132,7 +135,7 @@ public class RegistrationTests extends Runner {
         loginPage.regFill2pass("ellost");
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkDifferentPasswordsErrorText());
+        Assert.assertTrue("Error about different inputted passwords is incorrect or absent", loginPage.checkDifferentPasswordsErrorText());
     }
 
     //@Test
@@ -150,7 +153,7 @@ public class RegistrationTests extends Runner {
         loginPage.regFill2pass("@");
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkShortPasswordErrorText());
+        Assert.assertTrue("Error about short inputted password is incorrect or absent", loginPage.checkShortPasswordErrorText());
     }
 
     //@Test
@@ -168,7 +171,7 @@ public class RegistrationTests extends Runner {
         loginPage.regFill2pass("ellos");
         loginPage.confirmRegistrationForm();
 
-        System.out.println(loginPage.checkAlreadyRegisteredEmailErrorText());
+        Assert.assertTrue("Error about already registered emails is incorrect or absent", loginPage.checkAlreadyRegisteredEmailErrorText());
     }
 
 }

@@ -43,7 +43,7 @@ public class LoginTests extends Runner {
         loginPage.confirmLoginForm();
         loginPage.logOut();
 
-        Assert.assertTrue("", web.isElementPresent("LogoutLink"));
+        Assert.assertTrue("Logout link not found. Login failed", web.isElementPresent("LogoutLink"));
     }
 
     @Test
@@ -59,12 +59,12 @@ public class LoginTests extends Runner {
         loginPage.fillLoginForm("invalid@mail.com", "invalidpas");
         loginPage.confirmLoginForm();
 
-        System.out.println(loginPage.checkNonExistUserErrorText());
+        Assert.assertTrue("Non existant user error text incorrect or absent", loginPage.checkNonExistUserErrorText());
     }
 
     @Test
     @Ignore
-    public void emptyEmailLoginValidation() throws Exception, NoSuchLocatorException {
+    public void emptyEmailValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
 
@@ -76,12 +76,12 @@ public class LoginTests extends Runner {
         loginPage.confirmLoginForm();
         loginPage.switchToMainPage();
 
-        System.out.println(loginPage.checkEmptyEmailErrorText());
+        Assert.assertTrue("Error about empty email in Login form is incorrect or absent", loginPage.checkEmptyEmailErrorText());
     }
 
     @Test
     @Ignore
-    public void emptyEmaiPasswordValidation() throws Exception, NoSuchLocatorException {
+    public void emptyPasswordValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
 
@@ -94,7 +94,7 @@ public class LoginTests extends Runner {
         loginPage.switchToMainPage();
 
 
-        System.out.println(loginPage.checkEmptyPasswordErrorText());
+        Assert.assertTrue("Error about empty password is incorrect or absent", loginPage.checkEmptyPasswordErrorText());
     }
 
     @Test
@@ -111,7 +111,7 @@ public class LoginTests extends Runner {
         loginPage.switchToMainPage();
 
 
-        System.out.println(loginPage.checkEmptyEmailPasswordErrorText());
+        Assert.assertTrue("Error about email and password is incorrect or absent", loginPage.checkEmptyEmailPasswordErrorText());
     }
 
     //    Check trancate spaces from begin and end of text function in e-mail annd password login input fields
@@ -129,7 +129,7 @@ public class LoginTests extends Runner {
         loginPage.confirmLoginForm();
         loginPage.logOut();
 
-        System.out.println(web.isElementPresent("LogoutLink"));
+        Assert.assertTrue("Logout link is absent. Login failed", web.isElementPresent("LogoutLink"));
     }
 
     @Test
@@ -146,7 +146,7 @@ public class LoginTests extends Runner {
         loginPage.confirmLoginForm();
         loginPage.logOut();
 
-        System.out.println(web.isElementPresent("LogoutLink"));
+        Assert.assertTrue("Logout link is absent. Login failed",web.isElementPresent("LogoutLink"));
     }
 
     @Test
@@ -162,13 +162,15 @@ public class LoginTests extends Runner {
         loginPage.loginFillEmail("ellostest@mailinator.com");
         loginPage.loginFillHugePassword();
         loginPage.confirmLoginForm();
-        System.out.println(loginPage.checkCurrentURL());
+        Assert.assertTrue("Error page is displayed", loginPage.checkCurrentURL());
 
         ErrorPage errorPage = new ErrorPage(driver);
         errorPage.moveToMainPage();
 
         /*?????*/
-        System.out.println(web.getCurrentURL());
+        Assert.assertTrue("Redirection to main page is not performed",mainPage.isCurrentPageMain());
+
     }
+
 
 }

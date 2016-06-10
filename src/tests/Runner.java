@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         LoginTests.class,
-        RegistrationTests.class
+        RegistrationTests.class,
+        ProductTests.class
 })
 public class Runner {
 

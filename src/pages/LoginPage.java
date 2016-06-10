@@ -90,7 +90,7 @@ public class LoginPage {
         log.info("Confirm registration button clicked");
     }
 
-    public String checkNonExistUserErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkNonExistUserErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("LoginErrorTextArea");
         String expectedError = "* Fel e-postadress eller lösenord. Om du har\n"+
                 "glömt dina inloggningsuppgifter kan du gå till\n" +
@@ -98,22 +98,22 @@ public class LoginPage {
                 "in på ditt konto kontakta oss här.";
         log.info("Invalid user error: "+ actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkEmptyEmailErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkEmptyEmailErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("LoginErrorTextArea");
         String expectedError = "*Måste ange ett användarnamn.";
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkEmptyPasswordErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkEmptyPasswordErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("LoginErrorTextArea");
         String expectedError = "*Måste ange ett lösenord.";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
     public boolean checkEmptyEmailPasswordErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
@@ -129,10 +129,10 @@ public class LoginPage {
         web.clickLink("LogoutLink");
     }
 
-    public String checkCurrentURL() {
+    public boolean checkCurrentURL() {
         String expectedURL = "http://www.ellos.se/Error/error.aspx?keyword=errorpage_undefined_error";
         String actualURL = web.getCurrentURL();
-        return expectedURL.equals(actualURL) ? "Redirected to error page" : "Not redirected";
+        return expectedURL.equals(actualURL) ? true : false;
     }
 
     public void regFill1email(String s) throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
@@ -158,16 +158,16 @@ public class LoginPage {
         web.clickElement("EmailSubscriptionCheckbox");
     }
 
-    public String checkIncorrectEmailMaskErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkIncorrectEmailMaskErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("RegistrationServerErrorsContainer");
         String expectedError = "* Felaktig e-postadress";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkEmptyEmailPassRegistrationErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkEmptyEmailPassRegistrationErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
 
         String actualError = web.getElementText("RegistrationFrontendErrorsContainer");
         String expectedError = "*Vänligen kontrollera stavningen i din e-postadress och försök igen.\n" +
@@ -177,64 +177,64 @@ public class LoginPage {
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkEmptyEmailRegistrationErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkEmptyEmailRegistrationErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("RegistrationFrontendErrorsContainer");
         String expectedError = "*Vänligen kontrollera stavningen i din e-postadress och försök igen.\n" +
                                 "*Bekräfta e-post";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkEmptyPassRegistrationErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkEmptyPassRegistrationErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("RegistrationFrontendErrorsContainer");
         String expectedError = "*Du har inte valt ett lösenord.\n" +
                                 "*Bekräfta lösenord";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkDifferentEmailsErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkDifferentEmailsErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("RegistrationServerErrorsContainer");
         String expectedError = "* E-post och bekräfta e-post överensstämmer inte";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkDifferentPasswordsErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkDifferentPasswordsErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("RegistrationServerErrorsContainer");
         String expectedError = "* Lösenord och bekräfta lösenord överensstämmer inte";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
 
-    public String checkShortPasswordErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkShortPasswordErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("RegistrationServerErrorsContainer");
         String expectedError = "* Lösenordet måste innehålla minst 4 tecken.";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 
-    public String checkAlreadyRegisteredEmailErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public boolean checkAlreadyRegisteredEmailErrorText() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         String actualError = web.getElementText("RegistrationServerErrorsContainer");
         String expectedError = "* E-postadressen är redan registerad.";
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?"Error is correct":"Error is incorrect";
+        return expectedError.equals(actualError)?true:false;
     }
 }
 
