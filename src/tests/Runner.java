@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import utils.WebElementsActions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,15 +19,12 @@ import java.util.concurrent.TimeUnit;
         RegistrationTests.class
 })
 public class Runner {
-
         static WebDriver driver;
-        static WebElementsActions web;
         private static final Logger log = Logger.getLogger(Fixture.class);
 
         @BeforeClass
         public static void setUp() throws Exception {
                 driver = new FirefoxDriver();
-                web = new WebElementsActions(driver);
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 driver.manage().window().maximize();
                 log.info("<=== Start ?????? tests ===>");
@@ -40,5 +36,4 @@ public class Runner {
                 log.info("Close Browser!");
                 driver.quit();
         }
-
 }

@@ -18,7 +18,7 @@ public class MainPage {
     }
 
     public void clickLoginLink() throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException, NoSuchLocatorException {
-        web.clickLink("LoginRegistration");
+        web.clickLink("LoginRegistrationLink");
     }
 
 }
