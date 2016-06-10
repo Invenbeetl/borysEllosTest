@@ -2,15 +2,14 @@ package tests;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import pages.ErrorPage;
 import pages.LoginPage;
 import pages.MainPage;
 import utils.NoSuchLocatorException;
 
 
-public class LoginTests extends Runner {
+public class LoginTests extends Fixture {
 
 //    Usual goods order flow
 
@@ -27,7 +26,6 @@ public class LoginTests extends Runner {
 //    ...
 
     private static final Logger log = Logger.getLogger(LoginTests.class);
-    String baseUrl = "http://www.ellos.se/";
 
 
     @Test
@@ -43,11 +41,12 @@ public class LoginTests extends Runner {
         loginPage.confirmLoginForm();
         loginPage.logOut();
 
-        Assert.assertTrue("Logout link not found. Login failed", web.isElementPresent("LogoutLink"));
+
+        Assert.assertTrue("Logout link not found. Login failed", web.isElementPresent("LoginRegistrationLink"));
+
     }
 
-    @Test
-    @Ignore
+    //@Test
     public void nonExistUserValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -62,7 +61,7 @@ public class LoginTests extends Runner {
         Assert.assertTrue("Non existant user error text incorrect or absent", loginPage.checkNonExistUserErrorText());
     }
 
-    @Test
+    //@Test
     @Ignore
     public void emptyEmailValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
@@ -79,7 +78,7 @@ public class LoginTests extends Runner {
         Assert.assertTrue("Error about empty email in Login form is incorrect or absent", loginPage.checkEmptyEmailErrorText());
     }
 
-    @Test
+    //@Test
     @Ignore
     public void emptyPasswordValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
@@ -97,7 +96,7 @@ public class LoginTests extends Runner {
         Assert.assertTrue("Error about empty password is incorrect or absent", loginPage.checkEmptyPasswordErrorText());
     }
 
-    @Test
+    //@Test
     @Ignore
     public void emptyEmailAndPasswordValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
@@ -115,7 +114,7 @@ public class LoginTests extends Runner {
     }
 
     //    Check trancate spaces from begin and end of text function in e-mail annd password login input fields
-    @Test
+    //@Test
     @Ignore
     public void spacesTrancateSuccessLogin() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
@@ -132,7 +131,7 @@ public class LoginTests extends Runner {
         Assert.assertTrue("Logout link is absent. Login failed", web.isElementPresent("LogoutLink"));
     }
 
-    @Test
+    //@Test
     @Ignore
     public void tabsTrancateSuccessLogin() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
@@ -149,7 +148,7 @@ public class LoginTests extends Runner {
         Assert.assertTrue("Logout link is absent. Login failed",web.isElementPresent("LogoutLink"));
     }
 
-    @Test
+    //@Test
     @Ignore
     public void excessiveSymbolsInputError() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);

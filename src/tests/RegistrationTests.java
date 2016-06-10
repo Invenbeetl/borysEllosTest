@@ -11,7 +11,7 @@ import utils.NoSuchLocatorException;
 /**
  * Created by ViTaLES on 06.06.2016.
  */
-public class RegistrationTests extends Runner {
+public class RegistrationTests extends Fixture {
 
     //Registration functionality tests
     private static final Logger log = Logger.getLogger(RegistrationTests.class);
