@@ -1,7 +1,7 @@
 package pages;
 
 import junit.framework.Assert;
-import org.eclipse.jetty.util.log.LoggerLog;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import utils.NoSuchLocatorException;
 import utils.WebElementsActions;
@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ProductPage {
 
     WebElementsActions web;
-    LoggerLog log = new LoggerLog(ProductPage.class);
+    private static final Logger log = Logger.getLogger(LoginPage.class);
 
     public ProductPage(WebDriver driver) {
         web = new WebElementsActions(driver);
@@ -45,7 +45,7 @@ public class ProductPage {
         if (isAddToBusketButtonPresent()&& isAddedToBusketGoodsButtonPresent() && isEllosMainButtonPresent()){
             log.info("All buttons are present");
         } else {
-            log.warn("is add to busket button present -" + isAddToBusketButtonPresent()+ "\n" + "is added to busket goods button present -" +
+            log.error("is add to busket button present -" + isAddToBusketButtonPresent()+ "\n" + "is added to busket goods button present -" +
             isAddedToBusketGoodsButtonPresent()+ "\n" + "is Ellos main button present -" + isEllosMainButtonPresent());
             Assert.fail("is buy button present -" + isAddToBusketButtonPresent()+ "\n" + "is added to busket goods button present -" +
                     isAddedToBusketGoodsButtonPresent()+ "\n" + "is Ellos main button present -" + isEllosMainButtonPresent());
@@ -64,14 +64,14 @@ public class ProductPage {
     }
 
     private boolean isAddToBusketButtonPresent() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
-        return web.getElementText("AddToBusketButton").equals("Lägg i varukorgen")?true:false;
+        return web.getElementText("AddToBasketButton").equals("Lägg i varukorgen")?true:false;
     }
 
     public void checkProductAttributePresence() throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchLocatorException, IOException {
         if (isColorDropdownListPresent() && isSizeDropdownListPresent() && isPricePresent() && isNamePresent()){
             log.info("All product attributes are present");
         } else {
-            log.warn("is color drop-down list present -"+isColorDropdownListPresent()+"\n"+
+            log.error("is color drop-down list present -"+isColorDropdownListPresent()+"\n"+
                     "is size drop-down list present -"+isSizeDropdownListPresent()+"\n"+
                     "is price present -"+isPricePresent()+"\n"+
                     "is product name present -"+isNamePresent());
@@ -98,5 +98,59 @@ public class ProductPage {
 
     private boolean isNamePresent() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
         return web.isElementPresent("NameText");
+    }
+
+    public void checkColorDropdownlist() throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchLocatorException, IOException {
+        if (isFirstElementSelected()){
+            log.info("First element of color DDL successfully selected");
+        } else {
+            log.error("is first element of color DDL selected - " + isFirstElementSelected());
+            Assert.fail("is first element of color DDL selected - " + isFirstElementSelected());
+        }
+    }
+
+    private boolean isFirstElementSelected() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+        web.selectFirstFromList("ColorDropdownList");
+        return web.getElementText("ColorDDLtextContainer").equals(web.getElementText("FirstElementOfColorDDL"))?true:false;
+    }
+
+    public void switchToMainPage() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+        web.clickLink("MainPageLogoLink");
+        log.info("Logo link is clicked");
+    }
+
+    public void checkAddToCartFunctionality() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+        if (isAddedToCartIsCorrect()){
+            log.info("Product added to cart is correct");
+        } else {
+            log.error("Is added to cart product is correct - " + isAddedToCartIsCorrect());
+        }
+    }
+
+    private boolean isAddedToCartIsCorrect() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+        web.selectFirstFromList("ColorDropdownList");
+        web.selectFirstFromList("SizeDropdownList");
+        web.clickButton("AddToBasketButton");
+
+
+        String selectedSize = web.getElementText("SizeDDLtextContainer");
+        String selectedPrice = web.getElementText("PriceText");
+
+        web.clickElement("CartPanelLink");
+
+        String cartSize = web.getElementText("ProductSizeOnMiniCart_SP");
+        String cartPrice = web.getElementText("ProductPriceOnMiniCart_SP");
+
+        if (!web.getElementText("ProductAmountOnMiniCart_SP").equals(null)
+                && selectedSize.equals(cartSize)
+                && selectedPrice.equals(cartPrice)
+                && !web.getElementText("ProductNameOnMiniCart_SP").equals(null)){
+            return true;
+        } else {
+            return false;
+        }
+
+
+
     }
 }

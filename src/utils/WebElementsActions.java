@@ -42,6 +42,7 @@ public class WebElementsActions {
 
     public void openPage(String siteURL){
         driver.get(siteURL);
+        log.info("Open page= " + siteURL);
     }
 
     public void clickElement(String elementLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
@@ -213,6 +214,14 @@ public class WebElementsActions {
     public void selectFromList(String listLocator, String listValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
         new Select(driver.findElement(ExtractDataFromFile.ui(listLocator))).selectByValue(listValue);
         log.info("ListLocator " + listLocator + ", value - " + listValue);
+    }
+
+    /**
+     * Select first value from drop down list
+     */
+     public void selectFirstFromList(String listLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, NoSuchLocatorException {
+        new Select(driver.findElement(ExtractDataFromFile.ui(listLocator))).getFirstSelectedOption();
+        log.info("ListLocator " + listLocator);
     }
 
     public void sleep(long millis) {

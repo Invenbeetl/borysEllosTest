@@ -1,6 +1,6 @@
 package pages;
 
-import org.eclipse.jetty.util.log.LoggerLog;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import utils.NoSuchLocatorException;
 import utils.WebElementsActions;
@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MainPage {
 
     WebElementsActions web;
-    LoggerLog log = new LoggerLog(MainPage.class);
+    private static final Logger log = Logger.getLogger(LoginPage.class);
 
     public MainPage(WebDriver driver) {
         web = new WebElementsActions(driver);
