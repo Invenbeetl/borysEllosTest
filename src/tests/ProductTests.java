@@ -1,7 +1,6 @@
 package tests;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.testng.annotations.Test;
 import pages.HerrPage;
 import pages.MainPage;

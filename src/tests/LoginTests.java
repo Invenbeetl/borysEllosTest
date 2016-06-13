@@ -1,8 +1,8 @@
 package tests;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import pages.ErrorPage;
 import pages.LoginPage;
 import pages.MainPage;
@@ -42,7 +42,7 @@ public class LoginTests extends Fixture {
         loginPage.logOut();
 
 
-        Assert.assertTrue("Logout link not found. Login failed", web.isElementPresent("LoginRegistrationLink"));
+        Assert.assertTrue(web.isElementPresent("LoginRegistrationLink"), "Logout link not found. Login failed");
 
     }
 
@@ -62,7 +62,6 @@ public class LoginTests extends Fixture {
     }
 
     //@Test
-    @Ignore
     public void emptyEmailValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -79,7 +78,6 @@ public class LoginTests extends Fixture {
     }
 
     //@Test
-    @Ignore
     public void emptyPasswordValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -97,7 +95,6 @@ public class LoginTests extends Fixture {
     }
 
     //@Test
-    @Ignore
     public void emptyEmailAndPasswordValidation() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -115,7 +112,6 @@ public class LoginTests extends Fixture {
 
     //    Check trancate spaces from begin and end of text function in e-mail annd password login input fields
     //@Test
-    @Ignore
     public void spacesTrancateSuccessLogin() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -132,7 +128,6 @@ public class LoginTests extends Fixture {
     }
 
     //@Test
-    @Ignore
     public void tabsTrancateSuccessLogin() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -149,7 +144,6 @@ public class LoginTests extends Fixture {
     }
 
     //@Test
-    @Ignore
     public void excessiveSymbolsInputError() throws Exception, NoSuchLocatorException {
         web.openPage(baseUrl);
         web.refreshPage();
@@ -161,13 +155,13 @@ public class LoginTests extends Fixture {
         loginPage.loginFillEmail("ellostest@mailinator.com");
         loginPage.loginFillHugePassword();
         loginPage.confirmLoginForm();
-        Assert.assertTrue("Error page is displayed", loginPage.checkCurrentURL());
+        Assert.assertTrue(loginPage.checkCurrentURL(), "Error page is displayed");
 
         ErrorPage errorPage = new ErrorPage(driver);
         errorPage.moveToMainPage();
 
         /*?????*/
-        Assert.assertTrue("Redirection to main page is not performed",mainPage.isCurrentPageMain());
+        Assert.assertTrue(mainPage.isCurrentPageMain(), "Redirection to main page is not performed");
 
     }
 
