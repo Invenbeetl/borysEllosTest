@@ -58,7 +58,7 @@ public class LoginTests extends Fixture {
         loginPage.fillLoginForm("invalid@mail.com", "invalidpas");
         loginPage.confirmLoginForm();
 
-        Assert.assertTrue("Non existant user error text incorrect or absent", loginPage.checkNonExistUserErrorText());
+        Assert.assertTrue(loginPage.checkNonExistUserErrorText(), "Non existant user error text incorrect or absent");
     }
 
     //@Test
@@ -74,7 +74,7 @@ public class LoginTests extends Fixture {
         loginPage.confirmLoginForm();
         loginPage.switchToMainPage();
 
-        Assert.assertTrue("Error about empty email in Login form is incorrect or absent", loginPage.checkEmptyEmailErrorText());
+        Assert.assertTrue(loginPage.checkEmptyEmailErrorText(), "Error about empty email in Login form is incorrect or absent");
     }
 
     //@Test
@@ -91,7 +91,7 @@ public class LoginTests extends Fixture {
         loginPage.switchToMainPage();
 
 
-        Assert.assertTrue("Error about empty password is incorrect or absent", loginPage.checkEmptyPasswordErrorText());
+        Assert.assertTrue(loginPage.checkEmptyPasswordErrorText(), "Error about empty password is incorrect or absent");
     }
 
     //@Test
@@ -107,7 +107,7 @@ public class LoginTests extends Fixture {
         loginPage.switchToMainPage();
 
 
-        Assert.assertTrue("Error about email and password is incorrect or absent", loginPage.checkEmptyEmailPasswordErrorText());
+        Assert.assertTrue(loginPage.checkEmptyEmailPasswordErrorText(), "Error about email and password is incorrect or absent");
     }
 
     //    Check trancate spaces from begin and end of text function in e-mail annd password login input fields
@@ -124,7 +124,7 @@ public class LoginTests extends Fixture {
         loginPage.confirmLoginForm();
         loginPage.logOut();
 
-        Assert.assertTrue("Logout link is absent. Login failed", web.isElementPresent("LogoutLink"));
+        Assert.assertTrue( web.isElementPresent("LogoutLink"), "Logout link is absent. Login failed");
     }
 
     //@Test
@@ -140,7 +140,7 @@ public class LoginTests extends Fixture {
         loginPage.confirmLoginForm();
         loginPage.logOut();
 
-        Assert.assertTrue("Logout link is absent. Login failed",web.isElementPresent("LogoutLink"));
+        Assert.assertTrue(web.isElementPresent("LogoutLink"), "Logout link is absent. Login failed");
     }
 
     //@Test

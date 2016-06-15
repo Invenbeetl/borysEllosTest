@@ -23,6 +23,7 @@ public class ProductTests extends Fixture {
         web.openPage(baseUrl);
         web.refreshPage();
 
+
         MainPage mainPage = new MainPage(driver);
         mainPage.moveToHerrGoodsPage();
 
@@ -74,9 +75,72 @@ public class ProductTests extends Fixture {
         ProductPage productPage = new ProductPage(driver);
         productPage.checkColorDropdownlist();
         productPage.switchToMainPage();
-        productPage.checkAddToCartFunctionality();
 
     }
+
+    @Test
+    public void sizeDDLFunctionality() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
+        web.openPage(baseUrl);
+        web.refreshPage();
+
+        MainPage mainPage = new MainPage(driver);
+        mainPage.moveToHerrGoodsPage();
+
+        HerrPage herrPage = new HerrPage(driver);
+        herrPage.moveToTshortsSection();
+
+        TshortsPage tshortsPage = new TshortsPage(driver);
+        tshortsPage.moveToPDP();
+
+        ProductPage productPage = new ProductPage(driver);
+        productPage.checkSizeDropdownlist();
+        productPage.switchToMainPage();
+
+    }
+
+    @Test
+    public void addToCartFunctionality() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
+        web.openPage(baseUrl);
+        web.refreshPage();
+
+        MainPage mainPage = new MainPage(driver);
+        mainPage.moveToHerrGoodsPage();
+
+        HerrPage herrPage = new HerrPage(driver);
+        herrPage.moveToTshortsSection();
+
+        TshortsPage tshortsPage = new TshortsPage(driver);
+        tshortsPage.moveToPDP();
+
+        ProductPage productPage = new ProductPage(driver);
+        productPage.checkAddToCartFunctionality();
+
+        productPage.switchToMainPage();
+
+    }
+
+    @Test
+    public void checkProductImage() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
+        web.openPage(baseUrl);
+        web.refreshPage();
+
+        MainPage mainPage = new MainPage(driver);
+        mainPage.moveToHerrGoodsPage();
+
+        HerrPage herrPage = new HerrPage(driver);
+        herrPage.moveToTshortsSection();
+
+        TshortsPage tshortsPage = new TshortsPage(driver);
+        tshortsPage.moveToPDP();
+
+        ProductPage productPage = new ProductPage(driver);
+        productPage.checkProductImage();
+
+        productPage.switchToMainPage();
+
+    }
+
+
 
 
 
