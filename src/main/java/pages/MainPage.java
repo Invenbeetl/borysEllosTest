@@ -1,25 +1,24 @@
 package pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import utils.NoSuchLocatorException;
-import utils.WebElementsActions;
-
-import java.io.IOException;
+import utils.ClassNameUtil;
+import utils.PropertyLoader;
+import utils.WebDriverWrapper;
 
 /**
  * Created by ViTaLES on 27.05.2016.
  */
-public class MainPage {
+public class MainPage extends Page {
 
-    WebElementsActions web;
-    private static final Logger log = Logger.getLogger(LoginPage.class);
+    private static final String MAIN_PAGE = PropertyLoader.loadProperty("site.url");
+    private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
-    public MainPage(WebDriver driver) {
-        web = new WebElementsActions(driver);
+    public MainPage(WebDriverWrapper dr) {
+        super(dr, MAIN_PAGE);
     }
 
-    public void clickLoginLink() throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException, NoSuchLocatorException {
+
+    public void clickLoginLink() {
         web.clickLink("LoginRegistrationLink");
         log.info("Login/Registration link is clicked");
     }
@@ -28,7 +27,7 @@ public class MainPage {
         return web.getCurrentURL().equals("http://www.ellos.se")?true:false;
     }
 
-    public void moveToHerrGoodsPage() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public void moveToHerrGoodsPage() {
         web.clickLink("HerrSectionLink");
         log.info("\"Herr\" menu section is clicked");
     }

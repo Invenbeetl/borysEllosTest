@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MainPage;
 import pages.SuccessRegistrationPage;
+import utils.ClassNameUtil;
 import utils.NoSuchLocatorException;
 
 /**
@@ -14,165 +15,145 @@ import utils.NoSuchLocatorException;
 public class RegistrationTests extends Fixture {
 
     //Registration functionality tests
-    private static final Logger log = Logger.getLogger(RegistrationTests.class);
-    String baseUrl = "http://www.ellos.se/";
+    private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
     @Test
-    public void newUserSuccessRegistration() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void newUserSuccessRegistration() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        String email = loginPage.fillInValidRegistrationData();
-        loginPage.uncheckSubscriptionCheckbox();
-        loginPage.confirmRegistrationForm();
+        String email = ellos.loginPage.fillInValidRegistrationData();
+        ellos.loginPage.uncheckSubscriptionCheckbox();
+        ellos.loginPage.confirmRegistrationForm();
 
-        SuccessRegistrationPage successRegistrationPage = new SuccessRegistrationPage(driver);
-        Assert.assertTrue(successRegistrationPage.checkRegisteredEmail(email),
+        Assert.assertTrue(ellos.successRegistrationPage.checkRegisteredEmail(email),
                 "Displayed e-mail is not one, that was inputted during registration or registration is failed");
-        successRegistrationPage.logOut();
+        ellos.successRegistrationPage.logOut();
 
     }
 
     //@Test
-    public void emailMaskRegistarion() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void emailMaskRegistarion() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.regFill1email("ellostest.com");
-        loginPage.regFill2email("ellostest.com");
-        loginPage.regFill1pass("ellostest");
-        loginPage.regFill2pass("ellostest");
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.regFill1email("ellostest.com");
+        ellos.loginPage.regFill2email("ellostest.com");
+        ellos.loginPage.regFill1pass("ellostest");
+        ellos.loginPage.regFill2pass("ellostest");
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkIncorrectEmailMaskErrorText(), "Icorrect error about incorrect format of email is displayed");
+        Assert.assertTrue(ellos.loginPage.checkIncorrectEmailMaskErrorText(), "Icorrect error about incorrect format of email is displayed");
     }
 
     //@Test
-    public void emptyEmailAndPassRegistrationValidation() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void emptyEmailAndPassRegistrationValidation() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkEmptyEmailPassRegistrationErrorText(),
+        Assert.assertTrue(ellos.loginPage.checkEmptyEmailPassRegistrationErrorText(),
                 "Error about not filled email and password is incorrect or absent");
     }
 
     //@Test
-    public void emptyEmailRegistrationValidation() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void emptyEmailRegistrationValidation() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.regFill1pass("ellostest");
-        loginPage.regFill2pass("ellostest");
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.regFill1pass("ellostest");
+        ellos.loginPage.regFill2pass("ellostest");
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkEmptyEmailRegistrationErrorText(), "Error about not filled email is incorrect or absent");
+        Assert.assertTrue(ellos.loginPage.checkEmptyEmailRegistrationErrorText(), "Error about not filled email is incorrect or absent");
     }
 
     //@Test
-    public void emptyPassRegistrationValidation() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void emptyPassRegistrationValidation() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.regFill1email("ellostest@mailinator.com");
-        loginPage.regFill2email("ellostest@mailinator.com");
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.regFill1email("ellostest@mailinator.com");
+        ellos.loginPage.regFill2email("ellostest@mailinator.com");
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkEmptyPassRegistrationErrorText(), "Error about not filled password is incorrect or absent");
+        Assert.assertTrue(ellos.loginPage.checkEmptyPassRegistrationErrorText(), "Error about not filled password is incorrect or absent");
     }
 
     //@Test
-    public void differentEmailsRegValidation() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void differentEmailsRegValidation() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.regFill1email("ellostest@mailinator.com");
-        loginPage.regFill2email("elloste@mailinator.com");
-        loginPage.regFill1pass("ellostest");
-        loginPage.regFill2pass("ellostest");
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.regFill1email("ellostest@mailinator.com");
+        ellos.loginPage.regFill2email("elloste@mailinator.com");
+        ellos.loginPage.regFill1pass("ellostest");
+        ellos.loginPage.regFill2pass("ellostest");
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkDifferentEmailsErrorText(), "Error about different inputted emails is incorrect or absent");
+        Assert.assertTrue(ellos.loginPage.checkDifferentEmailsErrorText(), "Error about different inputted emails is incorrect or absent");
     }
 
     //@Test
-    public void differentPasswordsRegValidation() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void differentPasswordsRegValidation() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.regFill1email("ellostest@mailinator.com");
-        loginPage.regFill2email("ellostest@mailinator.com");
-        loginPage.regFill1pass("ellostest");
-        loginPage.regFill2pass("ellost");
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.regFill1email("ellostest@mailinator.com");
+        ellos.loginPage.regFill2email("ellostest@mailinator.com");
+        ellos.loginPage.regFill1pass("ellostest");
+        ellos.loginPage.regFill2pass("ellost");
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkDifferentPasswordsErrorText(),
+        Assert.assertTrue(ellos.loginPage.checkDifferentPasswordsErrorText(),
                 "Error about different inputted passwords is incorrect or absent");
     }
 
     //@Test
-    public void shortPasswordRegValidation() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void shortPasswordRegValidation() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.regFill1email("ellostest@mailinator.com");
-        loginPage.regFill2email("ellostest@mailinator.com");
-        loginPage.regFill1pass("@");
-        loginPage.regFill2pass("@");
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.regFill1email("ellostest@mailinator.com");
+        ellos.loginPage.regFill2email("ellostest@mailinator.com");
+        ellos.loginPage.regFill1pass("@");
+        ellos.loginPage.regFill2pass("@");
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkShortPasswordErrorText(), "Error about short inputted password is incorrect or absent");
+        Assert.assertTrue(ellos.loginPage.checkShortPasswordErrorText(), "Error about short inputted password is incorrect or absent");
     }
 
     //@Test
-    public void registeredAccountValidation() throws Exception, NoSuchLocatorException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void registeredAccountValidation() {
+        ellos.mainPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.clickLoginLink();
+        ellos.mainPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.regFill1email("ellostest@mailinator.com");
-        loginPage.regFill2email("ellostest@mailinator.com");
-        loginPage.regFill1pass("ellos");
-        loginPage.regFill2pass("ellos");
-        loginPage.confirmRegistrationForm();
+        ellos.loginPage.regFill1email("ellostest@mailinator.com");
+        ellos.loginPage.regFill2email("ellostest@mailinator.com");
+        ellos.loginPage.regFill1pass("ellos");
+        ellos.loginPage.regFill2pass("ellos");
+        ellos.loginPage.confirmRegistrationForm();
 
-        Assert.assertTrue(loginPage.checkAlreadyRegisteredEmailErrorText(),
+        Assert.assertTrue(ellos.loginPage.checkAlreadyRegisteredEmailErrorText(),
                 "Error about already registered emails is incorrect or absent");
     }
 

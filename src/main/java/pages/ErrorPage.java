@@ -2,7 +2,9 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import utils.ClassNameUtil;
 import utils.NoSuchLocatorException;
+import utils.WebDriverWrapper;
 import utils.WebElementsActions;
 
 import java.io.IOException;
@@ -10,17 +12,17 @@ import java.io.IOException;
 /**
  * Created by borys on 05.06.2016.
  */
-public class ErrorPage {
+public class ErrorPage extends Page {
 
     WebElementsActions web;
-    private static final Logger log = Logger.getLogger(LoginPage.class);
+    private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
-
-    public ErrorPage(WebDriver driver) {
-        web = new WebElementsActions(driver);
+    public ErrorPage(WebDriverWrapper dr) {
+        super(dr);
     }
 
-    public void moveToMainPage() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+
+    public void moveToMainPage() {
         web.clickButton("MainPageButton");
     }
 }

@@ -1,8 +1,10 @@
 package pages;
 
-import org.eclipse.jetty.util.log.LoggerLog;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import utils.ClassNameUtil;
 import utils.NoSuchLocatorException;
+import utils.WebDriverWrapper;
 import utils.WebElementsActions;
 
 import java.io.IOException;
@@ -10,17 +12,17 @@ import java.io.IOException;
 /**
  * Created by borys on 10.06.2016.
  */
-public class TshortsPage {
+public class TshortsPage extends Page {
     WebElementsActions web;
-    LoggerLog log = new LoggerLog(TshortsPage.class);
+    private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
-    public TshortsPage(WebDriver driver) {
-        web = new WebElementsActions(driver);
+    public TshortsPage(WebDriverWrapper dr) {
+        super(dr);
     }
 
 
     //Go to any t-short product page
-    public void moveToPDP() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public void moveToPDP() {
         web.clickLink("FirstDisplayedTshortLink");
         log.info("First product link is clicked");
     }

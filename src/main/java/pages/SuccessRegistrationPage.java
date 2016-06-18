@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import utils.NoSuchLocatorException;
+import utils.WebDriverWrapper;
 import utils.WebElementsActions;
 
 import java.io.IOException;
@@ -9,18 +10,19 @@ import java.io.IOException;
 /**
  * Created by borys on 03.06.2016.
  */
-public class SuccessRegistrationPage {
+public class SuccessRegistrationPage extends Page {
     WebElementsActions web;
 
-    public SuccessRegistrationPage(WebDriver driver){
-        web = new WebElementsActions(driver);
+    public SuccessRegistrationPage(WebDriverWrapper dr) {
+        super(dr);
     }
 
-    public boolean checkRegisteredEmail(String email) throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+
+    public boolean checkRegisteredEmail(String email) {
         return email.equals(web.getElementText("RegisteredEmailContainer"))?true:false;
     }
 
-    public void logOut() throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public void logOut() {
         web.clickLink("LogoutLink");
     }
 }

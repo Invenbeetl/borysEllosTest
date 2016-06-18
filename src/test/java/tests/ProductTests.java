@@ -1,5 +1,7 @@
 package tests;
 
+import org.apache.log4j.Logger;
+import org.testng.annotations.Test;
 import pages.HerrPage;
 import pages.MainPage;
 import pages.ProductPage;
@@ -14,127 +16,80 @@ import java.io.IOException;
 public class ProductTests extends Fixture {
     //Product page tests
     private static final Logger log = Logger.getLogger(RegistrationTests.class);
-    String baseUrl = "http://www.ellos.se/";
 
     @Test
-    public void buttonsPresence() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void buttonsPresence() {
+        ellos.productPage.openPage();
+        ellos.web.refreshPage();
+        ellos.mainPage.moveToHerrGoodsPage();
 
-
-        MainPage mainPage = new MainPage(driver);
-        mainPage.moveToHerrGoodsPage();
-
-        HerrPage herrPage = new HerrPage(driver);
-        herrPage.moveToTshortsSection();
-
-        TshortsPage tshortsPage = new TshortsPage(driver);
-        tshortsPage.moveToPDP();
-
-        ProductPage productPage = new ProductPage(driver);
-        productPage.checkButtonsPresence();
-        productPage.switchToMainPage();
+        ellos.herrPage.moveToTshortsSection();
+        ellos.tshortsPage.moveToPDP();
+        ellos.productPage.checkButtonsPresence();
+        ellos.productPage.switchToMainPage();
     }
 
     @Test
-    public void attributesPresence() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void attributesPresence() {
+        ellos.productPage.openPage();
+        ellos.web.refreshPage();
+        ellos.mainPage.moveToHerrGoodsPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.moveToHerrGoodsPage();
-
-        HerrPage herrPage = new HerrPage(driver);
-        herrPage.moveToTshortsSection();
-
-        TshortsPage tshortsPage = new TshortsPage(driver);
-        tshortsPage.moveToPDP();
-
-        ProductPage productPage = new ProductPage(driver);
-        productPage.checkProductAttributePresence();
-        productPage.switchToMainPage();
+        ellos.herrPage.moveToTshortsSection();
+        ellos.tshortsPage.moveToPDP();
+        ellos.productPage.checkProductAttributePresence();
+        ellos.productPage.switchToMainPage();
 
     }
 
     @Test
-    public void colorDDLfunctionality() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void colorDDLfunctionality() {
+        ellos.productPage.openPage();
+        ellos.web.refreshPage();
+        ellos.mainPage.moveToHerrGoodsPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.moveToHerrGoodsPage();
-
-        HerrPage herrPage = new HerrPage(driver);
-        herrPage.moveToTshortsSection();
-
-        TshortsPage tshortsPage = new TshortsPage(driver);
-        tshortsPage.moveToPDP();
-
-        ProductPage productPage = new ProductPage(driver);
-        productPage.checkColorDropdownlist();
-        productPage.switchToMainPage();
+        ellos.herrPage.moveToTshortsSection();
+        ellos.tshortsPage.moveToPDP();
+        ellos.productPage.checkColorDropdownlist();
+        ellos.productPage.switchToMainPage();
 
     }
 
     @Test
-    public void sizeDDLFunctionality() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void sizeDDLFunctionality() {
+        ellos.productPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.moveToHerrGoodsPage();
-
-        HerrPage herrPage = new HerrPage(driver);
-        herrPage.moveToTshortsSection();
-
-        TshortsPage tshortsPage = new TshortsPage(driver);
-        tshortsPage.moveToPDP();
-
-        ProductPage productPage = new ProductPage(driver);
-        productPage.checkSizeDropdownlist();
-        productPage.switchToMainPage();
+        ellos.mainPage.moveToHerrGoodsPage();
+        ellos.herrPage.moveToTshortsSection();
+        ellos.tshortsPage.moveToPDP();
+        ellos.productPage.checkSizeDropdownlist();
+        ellos.productPage.switchToMainPage();
 
     }
 
     @Test
-    public void addToCartFunctionality() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void addToCartFunctionality() {
+        ellos.productPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.moveToHerrGoodsPage();
-
-        HerrPage herrPage = new HerrPage(driver);
-        herrPage.moveToTshortsSection();
-
-        TshortsPage tshortsPage = new TshortsPage(driver);
-        tshortsPage.moveToPDP();
-
-        ProductPage productPage = new ProductPage(driver);
-        productPage.checkAddToCartFunctionality();
-
-        productPage.switchToMainPage();
+        ellos.mainPage.moveToHerrGoodsPage();
+        ellos.herrPage.moveToTshortsSection();
+        ellos.tshortsPage.moveToPDP();
+        ellos.productPage.checkAddToCartFunctionality();
+        ellos.productPage.switchToMainPage();
 
     }
 
     @Test
-    public void checkProductImage() throws ClassNotFoundException, NoSuchLocatorException, InstantiationException, IllegalAccessException, IOException {
-        web.openPage(baseUrl);
-        web.refreshPage();
+    public void checkProductImage() {
+        ellos.productPage.openPage();
+        ellos.web.refreshPage();
 
-        MainPage mainPage = new MainPage(driver);
-        mainPage.moveToHerrGoodsPage();
-
-        HerrPage herrPage = new HerrPage(driver);
-        herrPage.moveToTshortsSection();
-
-        TshortsPage tshortsPage = new TshortsPage(driver);
-        tshortsPage.moveToPDP();
-
-        ProductPage productPage = new ProductPage(driver);
-        productPage.checkProductImage();
-
-        productPage.switchToMainPage();
+        ellos.mainPage.moveToHerrGoodsPage();
+        ellos.tshortsPage.moveToPDP();
+        ellos.productPage.checkProductImage();
+        ellos.productPage.switchToMainPage();
 
     }
 
