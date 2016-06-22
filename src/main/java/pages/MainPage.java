@@ -24,7 +24,7 @@ public class MainPage extends Page {
     }
 
     public boolean isCurrentPageMain() {
-        return web.getCurrentURL().equals("http://www.ellos.se")?true:false;
+        return web.getCurrentURL().equals("http://www.ellos.se");
     }
 
     public void moveToHerrGoodsPage() {
