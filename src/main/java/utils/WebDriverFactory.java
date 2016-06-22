@@ -4,12 +4,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
+import java.io.File;
+
 /**
- * Created by borys on 22.06.2016.
+ * Created by ViTaLES on 22.06.2016.
  */
 public class WebDriverFactory {
+
     public static WebDriverWrapper driverWrapper;
 
     /*Browsers constants*/

@@ -61,6 +61,8 @@ public class WebElementsActions {
      * Click link
      */
     public void clickLink(String linkLocator)  {
+        log.info(UIMappingSingleton.ui(linkLocator));
+        log.info(UIMappingSingleton.ui(linkLocator));
         driver.findElement(UIMappingSingleton.ui(linkLocator)).click();
         log.info("Click on Link " + linkLocator);
     }

@@ -1,9 +1,0 @@
-2016-06-22 18:42:29 UIMappingSingleton:40 [INFO] - 	 UIMappingSingleton getInstance() class A 
-2016-06-22 18:42:30 UIMappingSingleton:34 [INFO] - 	 UIMappingSingleton creation time - 42682405nanoseconds 
-2016-06-22 18:42:30 UIMappingSingleton:42 [INFO] - 	 Object - utils.UIMappingSingleton@26ba2a48 
-2016-06-22 18:42:39 Fixture:33 [INFO] - <=== Start ?????? tests ===>
-2016-06-22 18:42:39 Page:38 [INFO] - Start open page.
-2016-06-22 18:42:46 Page:45 [INFO] - Page open successful.
-2016-06-22 18:42:48 WebElementsActions:149 [INFO] - Refresh page performed
-2016-06-22 18:43:19 Fixture:38 [INFO] - <=== Finished ?????? tests ===>
-2016-06-22 18:43:19 Fixture:39 [INFO] - Close Browser!

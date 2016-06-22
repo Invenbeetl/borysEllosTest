@@ -19,7 +19,6 @@ public class UIMappingSingleton {
     private volatile static UIMappingSingleton uniqueInstance;
     private static Properties properties = new Properties();
     private volatile static Map<String, String> uiMapping;
-
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
 
@@ -31,7 +30,7 @@ public class UIMappingSingleton {
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             uiMapping.put((String) entry.getKey(), (String) entry.getValue());
         }
-        log.info("\t UIMappingSingleton creation time - " + (System.nanoTime() - start) + "nanoseconds ");
+        log.info("\t UIMappingSingleton creation time - " + (System.nanoTime() - start) + " (nanoseconds)");
     }
 
 
@@ -77,7 +76,7 @@ public class UIMappingSingleton {
      */
     public static By ui(String key) {
         String[] partsOfLocators = uiMapping.get(key).split("\"");
-        String locatorType = partsOfLocators[0].substring(0, partsOfLocators[0].length() - 1);
+        String locatorType = partsOfLocators[0];
         String locatorValue = partsOfLocators[1];
 
         if (locatorType.equals("xpath")){
@@ -101,9 +100,8 @@ public class UIMappingSingleton {
 
     public static String uiStr(String key) {
         String[] partsOfLocators = uiMapping.get(key).split("\"");
-        String locatorValue = partsOfLocators[1];
 
-        return locatorValue;
+        return partsOfLocators[1];
     }
 
 }

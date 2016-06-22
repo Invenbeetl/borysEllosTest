@@ -1,7 +1,6 @@
 package tests;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import pages.Ellos;
@@ -19,14 +18,14 @@ public class Fixture {
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
+
     @BeforeSuite
     public static void setUp() throws Exception {
-
+        UIMappingSingleton.getInstance();
 
         driver = WebDriverFactory.initDriver();
         driver.manage().timeouts().implicitlyWait(Long.parseLong(IMPLICIT_WAIT), TimeUnit.SECONDS);
         ellos = new Ellos(driver);
-        UIMappingSingleton.getInstance();
         log.info("<=== Start ?????? tests ===>");
     }
 
@@ -35,6 +34,6 @@ public class Fixture {
         log.info("<=== Finished ?????? tests ===>");
         log.info("Close Browser!");
         driver.quit();
-    }
 
+    }
 }
