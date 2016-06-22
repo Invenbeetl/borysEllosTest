@@ -11,7 +11,6 @@ import java.io.IOException;
  */
 public class LoginPage extends Page {
 
-    WebElementsActions web;
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
     public LoginPage(WebDriverWrapper dr) {

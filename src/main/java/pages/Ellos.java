@@ -1,5 +1,6 @@
 package pages;
 
+import utils.ScreenShotMaker;
 import utils.WebDriverWrapper;
 import utils.WebElementsActions;
 
@@ -16,6 +17,7 @@ public class Ellos {
     public ProductPage productPage;
     public CheckoutPage checkoutPage;
     public TshortsPage tshortsPage;
+    public ScreenShotMaker screenShotMaker;
 
     public Ellos(WebDriverWrapper driver) {
         web  = new WebElementsActions(driver);
@@ -28,7 +30,7 @@ public class Ellos {
         checkoutPage = new CheckoutPage(driver);
         successRegistrationPage = new SuccessRegistrationPage(driver);
         tshortsPage = new TshortsPage(driver);
-//        screenShotMaker = new ScreenShotMaker(driver);
+        screenShotMaker = new ScreenShotMaker(driver);
     }
 
 }

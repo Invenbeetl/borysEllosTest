@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -61,8 +60,6 @@ public class WebElementsActions {
      * Click link
      */
     public void clickLink(String linkLocator)  {
-        log.info(UIMappingSingleton.ui(linkLocator));
-        log.info(UIMappingSingleton.ui(linkLocator));
         driver.findElement(UIMappingSingleton.ui(linkLocator)).click();
         log.info("Click on Link " + linkLocator);
     }
@@ -80,7 +77,7 @@ public class WebElementsActions {
     /**
      * Insert value into text input HTML field and Click ENTER for Field which used "Value" in the xpath expression
      */
-    public void inputAndClickEnter(String inputLocator, String inputData)  {
+    public void inputAndClickEnter(String inputLocator, String inputData) {
         driver.findElement(UIMappingSingleton.ui(inputLocator)).clear();
         driver.findElement(UIMappingSingleton.ui(inputLocator)).sendKeys(inputData);
         driver.findElement(UIMappingSingleton.ui(inputLocator)).sendKeys(Keys.ENTER);
@@ -179,7 +176,7 @@ public class WebElementsActions {
      * This method is used to do Focus to Element And Click
      * Use Actions class
      */
-    public void doFocusToElementAndClick(String focusElementLocator, String elementLocator) throws ClassNotFoundException, IOException, InstantiationException, NoSuchLocatorException, IllegalAccessException {
+    public void doFocusToElementAndClick(String focusElementLocator, String elementLocator) {
         new Actions(driver).moveToElement(getElement(focusElementLocator)).perform();
         log.info("Focus in to element" + focusElementLocator);
         driver.switchTo();
@@ -295,7 +292,7 @@ public class WebElementsActions {
         waitForElement.until(ExpectedConditions.visibilityOfElementLocated(UIMappingSingleton.ui(elementLocator)));
     }
 
-    public void waitForElementDisappear(String elementLocator)  {
+    public void waitForElementDisappear(String elementLocator) {
         log.info("*Start TO* Wait For Element _" + elementLocator + "_ Present");
         waitForElement.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(UIMappingSingleton.ui(elementLocator))));
     }
@@ -306,7 +303,7 @@ public class WebElementsActions {
      *
      * @param elementLocator used to find the element
      */
-    public void waitForPresenceOfElementLocated(String elementLocator)  {
+    public void waitForPresenceOfElementLocated(String elementLocator) {
         log.info("*Start TO* Wait For Presence Of Element Located _" + elementLocator + "_");
         waitForElement.until(ExpectedConditions.presenceOfElementLocated(UIMappingSingleton.ui(elementLocator)));
     }
@@ -317,7 +314,7 @@ public class WebElementsActions {
      *
      * @param elementLocator used to find the element
      */
-    public void waitForElementToBeClickable(String elementLocator)  {
+    public void waitForElementToBeClickable(String elementLocator) {
         log.info("*Start TO* Wait For Element _" + elementLocator + "_ To Be Clickable");
         waitForElement.until(ExpectedConditions.elementToBeClickable(UIMappingSingleton.ui(elementLocator)));
     }
@@ -325,7 +322,7 @@ public class WebElementsActions {
     /**
      * An expectation for checking that an element is becomes invisible, but stay on the DOM.
      */
-    public void waitForInvisibilityOfElement(String elementLocator)  {
+    public void waitForInvisibilityOfElement(String elementLocator) {
         log.info("*Start TO* Wait For Invisibility Of Element _" + elementLocator + "_ ");
         waitForElement.until(ExpectedConditions.invisibilityOfElementLocated(UIMappingSingleton.ui(elementLocator)));
     }
@@ -333,7 +330,7 @@ public class WebElementsActions {
     /**
      * Wait for invisibility Of Element on page specified time
      */
-    public void waitForInvisibilityOfElement(String elementLocator, int timeoutInS)  {
+    public void waitForInvisibilityOfElement(String elementLocator, int timeoutInS) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInS);
 
         log.info("*Start TO* Wait For Element Not Visible _" + elementLocator + "_");
@@ -344,7 +341,7 @@ public class WebElementsActions {
     /**
      * Wait for invisibility Of Element on page
      */
-    public void waitForElementNotVisible(String elementLocator)  {
+    public void waitForElementNotVisible(String elementLocator) {
         log.info("*Start TO* Wait For Element Not Visible _" + elementLocator + "_");
         waitForElement.until(ExpectedConditions.invisibilityOfElementLocated(UIMappingSingleton.ui(elementLocator)));
     }
