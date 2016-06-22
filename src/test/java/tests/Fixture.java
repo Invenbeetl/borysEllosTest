@@ -16,19 +16,17 @@ public class Fixture {
 
     public static Ellos ellos;
     static WebDriverWrapper driver;
-    static WebElementsActions web;
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
     @BeforeSuite
     public static void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "C:\\Tool\\chromedriver.exe");
-        driver = new WebDriverWrapper(new ChromeDriver());
+
+
+        driver = WebDriverFactory.initDriver();
         driver.manage().timeouts().implicitlyWait(Long.parseLong(IMPLICIT_WAIT), TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-
         ellos = new Ellos(driver);
-
+        UIMappingSingleton.getInstance();
         log.info("<=== Start ?????? tests ===>");
     }
 
