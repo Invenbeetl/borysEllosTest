@@ -31,6 +31,8 @@ public class Fixture {
         log.info("<=== Start ?????? tests ===>");
     }
 
+
+
     @AfterSuite
     public static void tearDown() throws Exception {
         log.info("<=== Finished ?????? tests ===>");
