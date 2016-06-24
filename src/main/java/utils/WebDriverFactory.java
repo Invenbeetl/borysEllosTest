@@ -1,5 +1,6 @@
 package utils;
 
+import net.anthavio.phanbedder.Phanbedder;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -38,10 +39,10 @@ public class WebDriverFactory {
         if(FIREFOX.equals(browserName)){
             driverWrapper = new WebDriverWrapper( new FirefoxDriver());
         } else if(PHANTOMJS.equals(browserName)){
-            /*File phantomjs = Phanbedder.unpack();
+            File phantomjs = Phanbedder.unpack();
             DesiredCapabilities caps = new DesiredCapabilities();
             caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomjs.getAbsolutePath());
-            driverWrapper = new WebDriverWrapper( new PhantomJSDriver(caps));*/
+            driverWrapper = new WebDriverWrapper( new PhantomJSDriver(caps));
 
         } else if(CHROME.equals(browserName)){
             System.setProperty("webdriver.chrome.driver", "C:\\Tool\\chromedriver.exe");
@@ -49,7 +50,12 @@ public class WebDriverFactory {
             driverWrapper = new WebDriverWrapper( new ChromeDriver(options));
 
         }  else if(INTERNET_EXPLORER.equals(browserName)){
-            driverWrapper = new WebDriverWrapper( new InternetExplorerDriver());
+            System.setProperty("webdriver.ie.driver", "C:\\Tool\\IEDriverServer.exe");
+
+            DesiredCapabilities capabilitiesIE = DesiredCapabilities.internetExplorer();
+            capabilitiesIE.setCapability(
+                    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+            driverWrapper = new WebDriverWrapper( new InternetExplorerDriver(capabilitiesIE));
         } else {
             Assert.fail("Invalid driver name");
         }
