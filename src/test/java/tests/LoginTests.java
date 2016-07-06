@@ -46,7 +46,7 @@ public class LoginTests extends Fixture {
 
     }
 
-    //@Test
+    @Test
     public void nonExistUserValidation()  {
         ellos.mainPage.openPage();
         ellos.web.refreshPage();
@@ -59,7 +59,7 @@ public class LoginTests extends Fixture {
         Assert.assertTrue(ellos.loginPage.checkNonExistUserErrorText(), "Non existant user error text incorrect or absent");
     }
 
-    //@Test
+    @Test
     public void emptyEmailValidation()  {
         ellos.mainPage.openPage();
         ellos.web.refreshPage();
@@ -73,7 +73,7 @@ public class LoginTests extends Fixture {
         Assert.assertTrue(ellos.loginPage.checkEmptyEmailErrorText(), "Error about empty email in Login form is incorrect or absent");
     }
 
-    //@Test
+    @Test
     public void emptyPasswordValidation()  {
         ellos.mainPage.openPage();
         ellos.web.refreshPage();
@@ -88,7 +88,7 @@ public class LoginTests extends Fixture {
         Assert.assertTrue(ellos.loginPage.checkEmptyPasswordErrorText(), "Error about empty password is incorrect or absent");
     }
 
-    //@Test
+    @Test
     public void emptyEmailAndPasswordValidation()  {
         ellos.mainPage.openPage();
         ellos.web.refreshPage();
