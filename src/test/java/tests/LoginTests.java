@@ -30,9 +30,12 @@ public class LoginTests extends Fixture {
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
 
+
     @Test
     public void positiveLogin()  {
         ellos.mainPage.openPage();
+        ellos.screenShotMaker.takeScreenShot(ClassNameUtil.getCurrentClassName());
+
         ellos.web.refreshPage();
 
         ellos.mainPage.clickLoginLink();
@@ -40,7 +43,6 @@ public class LoginTests extends Fixture {
         ellos.loginPage.fillLoginForm("ellostest@mailinator.com", "ellostest");
         ellos.loginPage.confirmLoginForm();
         ellos.loginPage.logOut();
-
 
         Assert.assertTrue(ellos.web.isElementPresent("LoginRegistrationLink"), "Logout link not found. Login failed");
 

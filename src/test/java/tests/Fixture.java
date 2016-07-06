@@ -18,7 +18,6 @@ public class Fixture {
     private static final String IMPLICIT_WAIT = PropertyLoader.loadProperty("wait.timeout");
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
-
     @BeforeSuite
     public static void setUp() throws Exception {
         UIMappingSingleton.getInstance();
@@ -34,6 +33,5 @@ public class Fixture {
         log.info("<=== Finished ?????? tests ===>");
         log.info("Close Browser!");
         driver.quit();
-
     }
 }
