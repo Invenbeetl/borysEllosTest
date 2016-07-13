@@ -13,7 +13,6 @@ import java.io.IOException;
  * Created by borys on 10.06.2016.
  */
 public class TshortsPage extends Page {
-    WebElementsActions web;
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
     public TshortsPage(WebDriverWrapper dr) {

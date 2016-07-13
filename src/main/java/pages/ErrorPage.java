@@ -14,7 +14,6 @@ import java.io.IOException;
  */
 public class ErrorPage extends Page {
 
-    WebElementsActions web;
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
     public ErrorPage(WebDriverWrapper dr) {

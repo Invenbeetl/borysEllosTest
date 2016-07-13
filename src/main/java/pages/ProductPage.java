@@ -1,11 +1,10 @@
 package pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import utils.*;
-
-import java.io.IOException;
+import utils.ClassNameUtil;
+import utils.PropertyLoader;
+import utils.WebDriverWrapper;
 
 /**
  * Created by ViTaLES on 27.05.2016.
@@ -26,14 +25,19 @@ public class ProductPage extends Page {
     }
 
     public void chooseColor() {
-
+        web.clickElement("ColorDropdownList");
+        web.clickElement("ColorDropdownFirstElement");
+        log.info("Color selected from DDL");
     }
 
     public void selectSize() {
-
+        web.selectFirstFromList("SizeDropdownList");
+        log.info("Size selected from DDL");
     }
 
     public void addToBasket() {
+        web.clickButton("AddToBasketButton");
+        log.info("Add to basket button is clicked");
 
     }
 
@@ -217,4 +221,8 @@ public class ProductPage extends Page {
         return val1.equals(val2)?false:true;
     }
 
+    public void goToBasketPage() {
+        web.clickButton("GoToBasketButton_SP");
+        log.info("\"Till kassen\" button is clicked");
+    }
 }

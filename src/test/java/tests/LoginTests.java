@@ -56,8 +56,8 @@ public class LoginTests extends Fixture {
         ellos.mainPage.clickLoginLink();
 
         ellos.loginPage.fillLoginForm("invalid@mail.com", "invalidpas");
-        ellos.loginPage.confirmLoginForm();
 
+        ellos.loginPage.confirmLoginForm();
         Assert.assertTrue(ellos.loginPage.checkNonExistUserErrorText(), "Non existant user error text incorrect or absent");
     }
 
@@ -70,9 +70,9 @@ public class LoginTests extends Fixture {
 
         ellos.loginPage.loginFillPassword("ellostest");
         ellos.loginPage.confirmLoginForm();
-        ellos.loginPage.switchToMainPage();
 
         Assert.assertTrue(ellos.loginPage.checkEmptyEmailErrorText(), "Error about empty email in Login form is incorrect or absent");
+        ellos.loginPage.switchToMainPage();
     }
 
     @Test

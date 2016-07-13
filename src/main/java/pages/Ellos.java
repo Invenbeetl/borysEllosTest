@@ -17,6 +17,7 @@ public class Ellos {
     public ProductPage productPage;
     public CheckoutPage checkoutPage;
     public TshortsPage tshortsPage;
+    public BasketPage basketPage;
     public ScreenShotMaker screenShotMaker;
 
     public Ellos(WebDriverWrapper driver) {
@@ -30,6 +31,7 @@ public class Ellos {
         checkoutPage = new CheckoutPage(driver);
         successRegistrationPage = new SuccessRegistrationPage(driver);
         tshortsPage = new TshortsPage(driver);
+        basketPage = new BasketPage(driver);
         screenShotMaker = new ScreenShotMaker(driver);
     }
 

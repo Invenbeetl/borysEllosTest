@@ -11,7 +11,6 @@ import java.io.IOException;
  * Created by borys on 03.06.2016.
  */
 public class SuccessRegistrationPage extends Page {
-    WebElementsActions web;
 
     public SuccessRegistrationPage(WebDriverWrapper dr) {
         super(dr);

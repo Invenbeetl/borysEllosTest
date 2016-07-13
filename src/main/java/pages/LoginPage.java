@@ -1,10 +1,9 @@
 package pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import utils.*;
-
-import java.io.IOException;
+import utils.ClassNameUtil;
+import utils.Randomizer;
+import utils.WebDriverWrapper;
 
 /**
  * Created by ViTaLES on 27.05.2016.
