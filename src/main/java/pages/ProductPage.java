@@ -114,7 +114,7 @@ public class ProductPage extends Page {
 
     private boolean isFirstElementSelected()  {
         web.selectFirstFromList("ColorDropdownList");
-        return web.getElementText("ColorDDLtextContainer").equals(web.getElementText("FirstElementOfColorDDL"))?true:false;
+        return web.getElementText("ColorDDLtextContainer").equals(web.getElementText("FirstElementOfColorDDL"));
     }
 
     public void switchToMainPage()  {
@@ -165,26 +165,18 @@ public class ProductPage extends Page {
 
 
     public void checkProductImage ()  {
-        if(isImagePresent()
+        Assert.assertTrue(isImagePresent()
                 && isImageViewable()
                 && isNavigationArrowsPresent()
-                && isImageChangeableViaNavigationArrows()){
-            log.info("Image displaying is correct");
-        } else {
-            log.error("Image is present -" + isImagePresent() +
-                    "Image is viewable -" + isImageViewable()+
-                    "Navigation arrows present -" + isNavigationArrowsPresent() +
-                    "Image is changeable via navigation arrows" + isImageChangeableViaNavigationArrows());
-            Assert.fail("Image is present -" + isImagePresent() +
-                    "Image is viewable -" + isImageViewable()+
-                    "Navigation arrows present -" + isNavigationArrowsPresent() +
-                    "Image is changeable via navigation arrows" + isImageChangeableViaNavigationArrows());
-        }
+                && isImageChangeableViaNavigationArrows(), "Image is presents incorrectly!");
+
+        log.info("Image is displaying correctly");
     }
 
     private boolean isImagePresent()  {
         return web.isElementPresent("MainImageContainer_SP");
     }
+
     private boolean isImageViewable()  {
         web.clickElement("MainImageContainer_SP");
         log.info("Image is clicked");
@@ -195,12 +187,8 @@ public class ProductPage extends Page {
     }
 
     private boolean isNavigationArrowsPresent()  {
-        if (web.isElementPresent("ForwardArrowButtonForImage_SP") &
-                web.isElementPresent("BackwardArrowButtonForImage_SP")){
-            return true;
-        } else {
-            return false;
-        }
+        return web.isElementPresent("ForwardArrowButtonForImage_SP")
+                && web.isElementPresent("BackwardArrowButtonForImage_SP");
     }
 
     private boolean isImageChangeableViaNavigationArrows()  {
@@ -209,10 +197,11 @@ public class ProductPage extends Page {
         web.clickButton("ForwardArrowButtonForImage_SP");
         String val2 = web.getElement("MainImageContainer_SP").getAttribute("src");
         log.info("Receive src attribute from displayed image after navigation arrow button clicked");
-        return val1.equals(val2)?false:true;
+        return !val1.equals(val2);
     }
 
     public void goToBasketPage() {
+        web.waitForElementToBeClickable("GoToBasketButton_SP");
         web.clickButton("GoToBasketButton_SP");
         log.info("\"Till kassen\" button is clicked");
     }

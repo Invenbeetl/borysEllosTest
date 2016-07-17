@@ -23,11 +23,10 @@ public class basketTests extends Fixture {
         ellos.productPage.selectSize();
         ellos.productPage.addToBasket();
         ellos.productPage.goToBasketPage();
-
     }
 
     @Test
-    public void directOrderFormPresence(){
+    public void checkBasketUI(){
         ellos.basketPage.checkDOFormPresence();
     }
 

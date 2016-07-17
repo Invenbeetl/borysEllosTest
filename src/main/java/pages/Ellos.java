@@ -34,5 +34,4 @@ public class Ellos {
         basketPage = new BasketPage(driver);
         screenShotMaker = new ScreenShotMaker(driver);
     }
-
 }
