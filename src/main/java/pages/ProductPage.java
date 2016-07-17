@@ -31,7 +31,8 @@ public class ProductPage extends Page {
     }
 
     public void selectSize() {
-        web.selectFirstFromList("SizeDropdownList");
+        web.clickElement("SizeDropdownList");
+        web.clickElement("SizeDropdownFirstElement");
         log.info("Size selected from DDL");
     }
 
