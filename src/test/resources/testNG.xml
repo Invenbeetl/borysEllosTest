@@ -3,7 +3,7 @@
     <test name="SmokeTest">
         <classes>
             <class name="tests.LoginTests"/>
-            <class name="tests.ProductTests"/>
+            <!--<class name="tests.ProductTests"/>-->
             <!--<class name="tests.RegistrationTests"/>
             <class name="tests.ProductTests"/>-->
         </classes>

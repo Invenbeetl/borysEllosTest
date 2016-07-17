@@ -43,7 +43,6 @@ public class WebDriverFactory {
     public static final String browserName = PropertyLoader.loadProperty("browser.name");
     public static final String browserVersion = PropertyLoader.loadProperty("browser.version");
     public static final String platform = PropertyLoader.loadProperty("browser.platform");
-
     public static final String hub = PropertyLoader.loadProperty("grid2.hub");
 
     public WebDriverFactory() {
@@ -70,7 +69,7 @@ public class WebDriverFactory {
         driverWrapper = new WebDriverWrapper(new RemoteWebDriver(getHubURL(), capability));
 
         driverWrapper.manage().deleteAllCookies();
-        driverWrapper.manage().window().setSize(new Dimension(1280, 720));
+        //driverWrapper.manage().window().setSize(new Dimension(1280, 720));
         driverWrapper.manage().window().maximize();
 
         log.info("Screen resolution - " + driverWrapper.manage().window().getSize());
@@ -114,7 +113,7 @@ public class WebDriverFactory {
         if (CHROME.equals(browserName)) {
             capability.setBrowserName(browserName);
             capability = DesiredCapabilities.chrome();
-            System.setProperty("webdriver.chrome.driver", "c:\\Tool\\chromedriver.exe");
+            //System.setProperty("webdriver.chrome.driver", "c:\\Tool\\chromedriver.exe");
 
             capability.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
             capability.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, true);

@@ -55,8 +55,6 @@ public class ProductPage extends Page {
                     isAddedToBusketGoodsButtonPresent()+ "\n" + "is Ellos main button present -" + isEllosMainButtonPresent());
 
         }
-
-
     }
 
     private boolean isEllosMainButtonPresent()  {
@@ -68,7 +66,7 @@ public class ProductPage extends Page {
     }
 
     private boolean isAddToBusketButtonPresent()  {
-        return web.getElementText("AddToBasketButton").equals("Lägg i varukorgen")?true:false;
+        return web.getElementText("AddToBasketButton").equals("Lägg i varukorgen");
     }
 
     public void checkProductAttributePresence()  {
@@ -125,7 +123,7 @@ public class ProductPage extends Page {
 
     public void checkAddToCartFunctionality()  {
         if (isAddedToCartIsCorrect()){
-            log.info("Product added to cart is correct");
+            log.info("asdsfsd added to cart is correct");
         } else {
             log.error("Is added to cart product is correct - " + isAddedToCartIsCorrect());
         }
@@ -136,7 +134,6 @@ public class ProductPage extends Page {
         web.selectFirstFromList("SizeDropdownList");
         web.clickButton("AddToBasketButton");
 
-
         String selectedSize = web.getElementText("SizeDDLtextContainer");
         String selectedPrice = web.getElementText("PriceText");
 
@@ -145,17 +142,10 @@ public class ProductPage extends Page {
         String cartSize = web.getElementText("ProductSizeOnMiniCart_SP");
         String cartPrice = web.getElementText("ProductPriceOnMiniCart_SP");
 
-        if (!web.getElementText("ProductAmountOnMiniCart_SP").equals(null)
+        return !web.getElementText("ProductAmountOnMiniCart_SP").equals(null)
                 && selectedSize.equals(cartSize)
                 && selectedPrice.equals(cartPrice)
-                && !web.getElementText("ProductNameOnMiniCart_SP").equals(null)){
-            return true;
-        } else {
-            return false;
-        }
-
-
-
+                && !web.getElementText("ProductNameOnMiniCart_SP").equals(null);
     }
 
     public void checkSizeDropdownlist()  {
@@ -169,7 +159,7 @@ public class ProductPage extends Page {
 
     private boolean isFirstSizeElementSelected()  {
         web.selectFirstFromList("SizeDropdownList");
-        return web.getElementText("SizeDDLtextContainer").equals(web.getElementText("FirstElementOfSizeDDL"))?true:false;
+        return web.getElementText("SizeDDLtextContainer").equals(web.getElementText("FirstElementOfSizeDDL"));
     }
 
 

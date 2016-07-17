@@ -6,9 +6,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * Created by ViTaLES on 27.05.2016.
@@ -19,30 +20,12 @@ public class WebElementsActions {
     private static WebDriverWait waitForElement;
     private static final Logger log = Logger.getLogger(ClassNameUtil.getCurrentClassName());
 
-    //Haha!!!!!
-    //Haha!!!!!
-    private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by).isDisplayed();
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-    //Haha!!!!!
-    //Haha!!!!!
-
 
     public WebElementsActions(WebDriver driver) {
         this.driver = driver;
         waitForElement = new WebDriverWait(driver, 20);
     }
 
-
-/*    public void openPage(String siteURL){
-        driver.get(siteURL);
-        log.info("Open page= " + siteURL);
-    }*/
 
     public void clickElement(String elementLocator) {
         driver.findElement(UIMappingSingleton.ui(elementLocator)).click();
@@ -84,15 +67,46 @@ public class WebElementsActions {
         log.info("Input in " + inputLocator + ", value - " + inputData);
     }
 
+
     /**
      * Method is used to check that element is present on page.
      */
-    public boolean isElementPresent(String elementLocator)  {
-        if (!driver.findElement(UIMappingSingleton.ui(elementLocator)).isDisplayed()) {
+    public boolean isElementPresent(String elementLocator) {
+        List<WebElement> list = driver.findElements(UIMappingSingleton.ui(elementLocator));
+
+        if (list.size() == 0) {
+            log.warn("Element _" + elementLocator + "_is NOT Present in DOM!");
             return false;
         }
+
+        if (list.get(0).isDisplayed()) {
+            log.info("Element _" + elementLocator + "_ is Present");
+            return true;
+        }
+        else {
+            log.error("Element _" + elementLocator + "_ is NOT Displayed Present!");
+            return false;
+        }
+    }
+
+    public boolean isAllElementsPresent(String elementLocator) {
+        List<WebElement> list = new ArrayList<>();
+        list.addAll(driver.findElements(UIMappingSingleton.ui(elementLocator)));
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).isDisplayed()) {
+                list.get(i).equals("");
+                //log.info("Element _" + list.get(i) + "_ is present!");
+            } else {
+                log.warn("Element _" + list.get(i) + "_; element (" + i + ") _is NOT Present!");
+                return false;
+            }
+        }
+
+        log.info("Total quantity of " + elementLocator + " - " + list.size());
         return true;
     }
+
 
     /**
      * This method is used to agree messages on pop-up windows
