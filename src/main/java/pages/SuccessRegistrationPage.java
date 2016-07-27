@@ -1,6 +1,8 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import utils.ClassNameUtil;
 import utils.NoSuchLocatorException;
 import utils.WebDriverWrapper;
 import utils.WebElementsActions;
@@ -16,12 +18,15 @@ public class SuccessRegistrationPage extends Page {
         super(dr);
     }
 
+    private final static Logger log=Logger.getLogger(ClassNameUtil.getCurrentClassName());
+
 
     public boolean checkRegisteredEmail(String email) {
-        return email.equals(web.getElementText("RegisteredEmailContainer"))?true:false;
+        return email.equals(web.getElementText("RegisteredEmailContainer"));
     }
 
     public void logOut() {
         web.clickLink("LogoutLink");
+        log.info("Logout link is clicked");
     }
 }

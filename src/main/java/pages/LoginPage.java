@@ -101,7 +101,7 @@ public class LoginPage extends Page {
     public boolean checkEmptyEmailErrorText() {
         String actualError = web.getElementText("LoginErrorTextArea");
         String expectedError = "*Måste ange ett användarnamn.";
-        return expectedError.equals(actualError)?true:false;
+        return expectedError.equals(actualError);
     }
 
     public boolean checkEmptyPasswordErrorText() {
@@ -110,7 +110,7 @@ public class LoginPage extends Page {
         log.info("Displayed error text is: ");
         log.info(actualError);
 
-        return expectedError.equals(actualError)?true:false;
+        return expectedError.equals(actualError);
     }
 
     public boolean checkEmptyEmailPasswordErrorText() {

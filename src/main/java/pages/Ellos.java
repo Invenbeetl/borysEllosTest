@@ -15,7 +15,6 @@ public class Ellos {
     public LoginPage loginPage;
     public SuccessRegistrationPage successRegistrationPage;
     public ProductPage productPage;
-    public CheckoutPage checkoutPage;
     public TshortsPage tshortsPage;
     public BasketPage basketPage;
     public ScreenShotMaker screenShotMaker;
@@ -28,7 +27,6 @@ public class Ellos {
         herrPage = new HerrPage(driver);
         loginPage = new LoginPage(driver);
         productPage = new ProductPage(driver);
-        checkoutPage = new CheckoutPage(driver);
         successRegistrationPage = new SuccessRegistrationPage(driver);
         tshortsPage = new TshortsPage(driver);
         basketPage = new BasketPage(driver);

@@ -45,7 +45,7 @@ public class Fixture {
 
     @AfterSuite
     public static void tearDown() {
-        log.info("<=== Finished ?????? tests ===>");
+        log.info("<=== Finished test class ===>");
         log.info("Close Browser!");
         driver.quit();
     }

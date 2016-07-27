@@ -23,5 +23,6 @@ public class ErrorPage extends Page {
 
     public void moveToMainPage() {
         web.clickButton("MainPageButton");
+        log.info("Link to main page is clicked");
     }
 }

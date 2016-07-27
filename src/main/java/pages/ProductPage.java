@@ -47,7 +47,8 @@ public class ProductPage extends Page {
     }
 
     public void checkButtonsPresence()  {
-        if (isAddToBusketButtonPresent()&& isAddedToBusketGoodsButtonPresent() && isEllosMainButtonPresent()){
+        Assert.assertTrue(isAddToBusketButtonPresent()&& isAddedToBusketGoodsButtonPresent() && isEllosMainButtonPresent(), "Not all buttons present");
+        /*if (isAddToBusketButtonPresent()&& isAddedToBusketGoodsButtonPresent() && isEllosMainButtonPresent()){
             log.info("All buttons are present");
         } else {
             log.error("is add to busket button present -" + isAddToBusketButtonPresent()+ "\n" + "is added to busket goods button present -" +
@@ -55,7 +56,7 @@ public class ProductPage extends Page {
             Assert.fail("is buy button present -" + isAddToBusketButtonPresent()+ "\n" + "is added to busket goods button present -" +
                     isAddedToBusketGoodsButtonPresent()+ "\n" + "is Ellos main button present -" + isEllosMainButtonPresent());
 
-        }
+        }*/
     }
 
     private boolean isEllosMainButtonPresent()  {
@@ -67,11 +68,13 @@ public class ProductPage extends Page {
     }
 
     private boolean isAddToBusketButtonPresent()  {
+        web.isElementPresent("AddToBasketButton");
         return web.getElementText("AddToBasketButton").equals("Lägg i varukorgen");
     }
 
     public void checkProductAttributePresence()  {
-        if (isColorDropdownListPresent() && isSizeDropdownListPresent() && isPricePresent() && isNamePresent()){
+        Assert.assertTrue(isColorDropdownListPresent() && isSizeDropdownListPresent() && isPricePresent() && isNamePresent(), "Not all product attributes present");
+        /*if (isColorDropdownListPresent() && isSizeDropdownListPresent() && isPricePresent() && isNamePresent()){
             log.info("All product attributes are present");
         } else {
             log.error("is color drop-down list present -"+isColorDropdownListPresent()+"\n"+
@@ -83,7 +86,7 @@ public class ProductPage extends Page {
                     "is price present -"+isPricePresent()+"\n"+
                     "is product name present -"+isNamePresent());
 
-        }
+        }*/
 
     }
 
@@ -104,12 +107,13 @@ public class ProductPage extends Page {
     }
 
     public void checkColorDropdownlist()  {
-        if (isFirstElementSelected()){
+        Assert.assertTrue(isFirstElementSelected(), "First element of color DDL is not selected");
+        /*if (isFirstElementSelected()){
             log.info("First element of color DDL successfully selected");
         } else {
             log.error("is first element of color DDL selected - " + isFirstElementSelected());
             Assert.fail("is first element of color DDL selected - " + isFirstElementSelected());
-        }
+        }*/
     }
 
     private boolean isFirstElementSelected()  {
