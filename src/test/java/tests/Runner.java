@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by ViTaLES on 08.06.2016.
  */
-public class Runner {
+public class  Runner {
         static WebDriver driver;
         private static final Logger log = Logger.getLogger(Fixture.class);
 

@@ -21,7 +21,7 @@ public class Fixture {
     public static void setUp() {
         UIMappingSingleton.getInstance();
 
-        driver = WebDriverFactory.getInstance();
+        driver = WebDriverFactory.initDriver();
         driver.manage().timeouts().implicitlyWait(Long.parseLong(IMPLICIT_WAIT), TimeUnit.SECONDS);
         ellos = new Ellos(driver);
         log.info("<=== Start test class - ===>");
